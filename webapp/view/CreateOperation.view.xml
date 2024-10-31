@@ -1,0 +1,57 @@
+<mvc:View controllerName="tanksoperations.controller.CreateOperation"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m"
+    xmlns:ux="sap.uxap"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:core="sap.ui.core">
+    <Page id="requestDetailPage" title="{i18n>newEntry}" floatingFooter="false" showNavButton="{AppView>/fromLaunchpad}" navButtonPress="onNavBack">
+        <content>
+            <Panel id="_IDGenPanel1">
+                <form:SimpleForm id="GeneralInfoContainer" editable="false" layout="ColumnLayout" title="{i18n>generalInfo}" columnsM="2" columnsL="3" columnsXL="4" class="sapUiTinyMarginTop">
+                    <form:content>
+                        <Label text="{i18n>type}"/>
+                        <Select id="type" name="type" required="true" forceSelection="false" change="onChangeType" items="{
+							path: '/xTQAxTANK_OPERATION_TYPE_VH'
+						}">
+                            <core:ListItem key="{domvalue_l}" text="{ddtext}"/>
+                        </Select>
+
+                        <Label text="{i18n>src_tank}"/>
+                        <Select id="src_tank" name="src_tank" required="true" forceSelection="false" change="onChangeTank" items="{
+							path: '/xTQAxTANKS_VH'
+						}">
+                            <core:ListItem key="{tank}" text="{lgobe} ({desc_material})"/>
+                        </Select>
+
+                        <Label text="{i18n>dest_tank}"/>
+                        <Select id="dest_tank" name="dest_tank" required="true" visible="false" change="onChangeTank" forceSelection="false" items="{
+							path: '/xTQAxTANKS_VH'
+						}">
+                            <core:ListItem key="{tank}" text="{lgobe} ({desc_material})"/>
+                        </Select>
+
+                        <Label text="{i18n>operation_time}"/>
+                        <TimePicker id="operation_time" name="operation_time" visible="false" required="true" value="{type: 'sap.ui.model.type.DateTime', formatOptions: {pattern: 'HH:mm:ss'}}" valueFormat="PTHH'H'mm'M'ss'S" displayFormat="HH:mm:ss"/>
+
+                        <Label text="{i18n>quantity}"/>
+                        <Input id="quantity" name="quantity" type="Number" required="true"/>
+
+                        <Label text="{i18n>unit}"/>
+                        <Select id="unit" name="unit" enabled="false" selectedKey="L" required="true" forceSelection="false">
+                            <core:ListItem key="L" text="L"/>
+                        </Select>
+
+                        <Label text="{i18n>planned_date}"/>
+                        <DateTimePicker id="planned_date" name="planned_date" required="true" value="{type: 'sap.ui.model.type.DateTime', formatOptions: {pattern: 'dd.MM.yyyy, HH:mm'}}" valueFormat="yyyy-MM-ddPTHH:mm:ssZ" displayFormat="dd.MM.yyyy, HH:mm"/>
+                    </form:content>
+                </form:SimpleForm>
+            </Panel>
+        </content>
+        <footer>
+            <OverflowToolbar>
+                <ToolbarSpacer/>
+                <Button text="{i18n>createOperation}" type="Emphasized" press="onCreateTankOperation" />
+            </OverflowToolbar>
+        </footer>
+    </Page>
+</mvc:View>

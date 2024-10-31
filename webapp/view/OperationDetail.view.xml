@@ -1,0 +1,20 @@
+<mvc:View controllerName="tanksoperations.controller.OperationDetail"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns:ux="sap.uxap"
+    xmlns="sap.m"
+    xmlns:f="sap.f"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:main="sap.ui.webc.main"
+    xmlns:core="sap.ui.core">
+    <Page id="requestDetailPage" title="{order_no} - {type_txt}" floatingFooter="true" showNavButton="false" navButtonPress="onNavBackDetail">
+        <content>
+            <Panel id="_IDGenPanel1">
+                <form:SimpleForm id="GeneralInfo" editable="false" layout="ColumnLayout" title="{i18n>generalInfo}" columnsM="2" columnsL="3" columnsXL="4" class="sapUiTinyMarginTop">
+                    <form:content>
+
+                    </form:content>
+                </form:SimpleForm>
+            </Panel>
+        </content>
+    </Page>
+</mvc:View>

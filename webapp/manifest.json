@@ -1,0 +1,173 @@
+{
+  "_version": "1.49.0",
+  "sap.app": {
+    "id": "tanksoperations",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:basic",
+      "version": "1.10.4",
+      "toolsId": "85124d3c-f408-498f-9e09-3fb4d0431ffe"
+    },
+    "dataSources": {
+      "mainService": {
+        "uri": "/sap/opu/odata/tqa/TANKS_OPERATIONS_SRV/",
+        "type": "OData",
+        "settings": {
+          "annotations": [
+            "/TQA/OD_TANKS_OPERATION_ANNO_MDL",
+            "annotation"
+          ],
+          "localUri": "localService/metadata.xml",
+          "odataVersion": "2.0"
+        }
+      },
+      "/TQA/OD_TANKS_OPERATION_ANNO_MDL": {
+        "uri": "/zsrv_iwfnd/Annotations(TechnicalName='%2FTQA%2FOD_TANKS_OPERATION_ANNO_MDL',Version='0001')/$value/",
+        "type": "ODataAnnotation",
+        "settings": {
+          "localUri": "localService//TQA/OD_TANKS_OPERATION_ANNO_MDL.xml"
+        }
+      },
+      "annotation": {
+        "type": "ODataAnnotation",
+        "uri": "annotations/annotation.xml",
+        "settings": {
+          "localUri": "annotations/annotation.xml"
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": true,
+    "dependencies": {
+      "minUI5Version": "1.114.0",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {},
+        "sap.f": {},
+        "sap.suite.ui.generic.template": {},
+        "sap.ui.generic.app": {},
+        "sap.ui.table": {},
+        "sap.ushell": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "tanksoperations.i18n.i18n"
+        }
+      },
+      "": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {}
+      }
+    },
+    "resources": {
+      "css": [
+        {
+          "uri": "/sap/bc/ui5_ui5/tqa/launchpad/css/apps-style.css"
+        }
+      ]
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.m.routing.Router",
+        "viewType": "XML",
+        "async": true,
+        "viewPath": "tanksoperations.view",
+        "controlAggregation": "pages",
+        "controlId": "app",
+        "clearControlAggregation": false
+      },
+      "routes": [
+        {
+          "name": "RouteMain",
+          "pattern": ":?query:",
+          "target": [
+            "TargetMain"
+          ]
+        },
+        {
+          "name": "operationDetail",
+          "pattern": "xTQAxTANKS_OPERATIONS_DD/{objectId}",
+          "target": [
+            "operationDetail"
+          ]
+        },
+        {
+          "name": "createOperation",
+          "pattern": "NewEntry",
+          "target": [
+            "createOperation"
+          ]
+        },
+        {
+          "name": "NotFound",
+          "pattern": "NotFound",
+          "target": "NotFound"
+        }
+      ],
+      "targets": {
+        "TargetMain": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "Main",
+          "viewName": "Main"
+        },
+        "operationDetail": {
+          "viewId": "operationDetail",
+          "viewLevel": 2,
+          "viewName": "OperationDetail"
+        },
+        "createOperation": {
+          "viewId": "createOperation",
+          "viewLevel": 3,
+          "viewName": "CreateOperation"
+        },
+        "NotFound": {
+          "viewName": "NotFound",
+          "viewType": "XML",
+          "transition": "show",
+          "clearControlAggregation": false,
+          "viewId": "NotFound"
+        }
+      }
+    },
+    "rootView": {
+      "viewName": "tanksoperations.view.App",
+      "type": "XML",
+      "async": true,
+      "id": "App"
+    }
+  }
+}
